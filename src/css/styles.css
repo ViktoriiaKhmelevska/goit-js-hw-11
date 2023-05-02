@@ -1,3 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
@@ -5,7 +31,13 @@
 
 img {
 display: block;
-min-width: 100%;
+max-width: 100%;
+height: auto;
+}
+
+.photo-card {
+object-fit: cover;
+background-size: 100% 100%;
 }
 
 .gallery {
@@ -22,6 +54,7 @@ min-width: 100%;
   display: flex;
   flex-direction: column;
   width: calc((100% - 60px) / 4);
+  justify-content: space-between;
   text-decoration: none;
   color: #000;
   min-height: 144px;
@@ -34,10 +67,15 @@ min-width: 100%;
 .info {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 5px;
   margin-left: auto;
   margin-right: auto;
   gap: 5px;
+}
+
+.info p {
+  font-size: 12px;
+  text-align: center;
 }
 
 .gallery__image:hover {

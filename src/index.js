@@ -13,11 +13,15 @@ const form = document.querySelector(".search-form");
 // const formInput = document.querySelector(".search-form input");
 const gallery = document.querySelector('.gallery');
 const lightbox = new SimpleLightbox('.gallery a');
+const paginationBtn = document.querySelector('.load-more');
+paginationBtn.hidden = true;
 
+paginationBtn.addEventListener('click', onPagination);
 form.addEventListener('submit', onSubmit);
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
+  page = 1;
   const { searchQuery } = e.target.elements;
   inputValue = searchQuery.value.trim();
   
@@ -27,18 +31,30 @@ function onSubmit(e) {
     page = 1
     return
   }
-  addGallery();
+  await addGallery();
+  paginationBtn.hidden = false;
   return inputValue;
 };
+
+async function onPagination() {
+  page += 1;
+  await addGallery();
+  // getImages(page);
+  //  createMarkup(images);
+  if (page < totalPages) {
+    paginationBtn.hidden = false;
+  }
+  }
   
 async function addGallery() {
-  //  gallery.innerHTML = "";
+  gallery.innerHTML = "";
   try {
   const response = await getImages(inputValue, page);
     const images = response.data.hits;
-    console.log(images);
+    // console.log(images);
     createMarkup(images);
     lightbox.refresh();
+  
   } catch (error) {
     console.log(error);
  }
@@ -87,8 +103,13 @@ async function getImages(inputValue, page) {
     try {
       const response = await axios.get(`https://pixabay.com/api/?${params}`);
       totalPages = response.data.totalHits / per_page;
-    return response;
-  } catch (error) {
+      if (response.data.hits.length === 0) {
+        Notify.warning("Sorry, there are no images matching your search query. Please try again.")
+        return;
+      };
+  Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
+      return response;
+      } catch (error) {
     Notify.warning("Error loading.");
   }
 };
