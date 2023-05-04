@@ -23,16 +23,76 @@ ul {
   margin: 0;
   padding: 0;
 }
+div {
+  display: block;
+}
 
-:root {
-  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  --animation-duration: 250ms;
+.container {
+  max-width: 100%;
+  max-height: max-content;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-form {
+    margin-left: auto;
+  margin-right: auto;
+  max-width: 250px;
+  height: 50px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 5px;
+  /* background-color: rgb(244, 255, 196); */
+}
+input {
+  width: 250px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px inset #060000;
+  font-size: 12px;
+}
+
+.btn {
+  display: flex;
+  margin: 5px;
+
+  width: 35px;
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px inset #060000;
+  font-size: 10px;
+ margin: auto;
+}
+
+.icon {
+  align-items: center;
+  display:inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  stroke-width: 0;
+  stroke: black;
+  fill: black;
+}
+
+.btn:hover {
+    stroke: rgb(15, 153, 45);
+      fill: rgb(15, 153, 45);
 }
 
 img {
 display: block;
 max-width: 100%;
 height: auto;
+aspect-ratio: 4/3;
+object-fit: cover;
+overflow: hidden;
 }
 
 .photo-card {
@@ -47,13 +107,13 @@ background-size: 100% 100%;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
-  gap: 20px;
+  gap: 10px;
 }
 
 .gallery__item {
   display: flex;
   flex-direction: column;
-  width: calc((100% - 60px) / 4);
+  width: calc((100% - 30px) / 4);
   justify-content: space-between;
   text-decoration: none;
   color: #000;
@@ -62,6 +122,17 @@ background-size: 100% 100%;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   overflow: hidden;
+}
+
+.gallery__image:hover {
+  transform: scale(1.03);
+}
+
+.gallery__image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .info {
@@ -73,28 +144,7 @@ background-size: 100% 100%;
   gap: 5px;
 }
 
-.info p {
-  font-size: 12px;
+.info p, b {
+  font-size: 10px;
   text-align: center;
-}
-
-.gallery__image:hover {
-  transform: scale(1.03);
-}
-
-.gallery__image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  transition: transform var(--animation-duration) var(--timing-function);
-}
-
-.gallery__link {
-  display: block;
-  text-decoration: none;
-  height: 100%;
-}
-
-.gallery__link:hover {
-  cursor: zoom-in;
 }
