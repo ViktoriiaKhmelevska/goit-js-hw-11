@@ -23,6 +23,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 div {
   display: block;
 }
@@ -32,43 +33,57 @@ div {
   max-height: max-content;
   padding-left: 8px;
   padding-right: 8px;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.form-container {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  background-color: cornflowerblue;
+  text-align: center;
+  margin-top: -50px;
+  padding: 0;
+}
+
 .search-form {
-    margin-left: auto;
+  margin-left: auto;
   margin-right: auto;
   max-width: 250px;
   height: 50px;
   display: flex;
-  gap: 5px;
+  /* gap: 5px; */
   justify-content: center;
   text-align: center;
   align-items: center;
   padding: 5px;
-  /* background-color: rgb(244, 255, 196); */
 }
+
 input {
   width: 250px;
   height: 30px;
   border-radius: 5px;
   padding: 10px;
-  border: 1px inset #060000;
-  font-size: 12px;
+  border: 1px solid #060000;
+  outline: none;
+  font-size: 15px;
 }
 
 .btn {
   display: flex;
   margin: 5px;
-
   width: 35px;
   height: 25px;
   border-radius: 5px;
   padding: 5px;
-  border: 1px inset #060000;
+  border: 1px solid #060000;
   font-size: 10px;
- margin: auto;
+}
+.btn:focus, input:focus, 
+.load-more:focus {
+  border: 2px solid  #060000;
 }
 
 .icon {
@@ -83,7 +98,7 @@ input {
 
 .btn:hover {
     stroke: rgb(15, 153, 45);
-      fill: rgb(15, 153, 45);
+    fill: rgb(15, 153, 45);
 }
 
 img {
@@ -105,6 +120,7 @@ background-size: 100% 100%;
   flex-wrap: wrap;
   justify-content: center;
   padding: 20px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   gap: 10px;
@@ -141,10 +157,25 @@ background-size: 100% 100%;
   padding: 5px;
   margin-left: auto;
   margin-right: auto;
-  gap: 5px;
+  gap: 15px;
 }
 
 .info p, b {
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
+}
+
+.load-more-container {
+  text-align: center;
+}
+
+.load-more {
+  margin-bottom: 10px;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  /* padding: 5px; */
+  border: 1px inset #060000;
+  font-size: 13px;
+  background-color: cornflowerblue;
 }

@@ -25,6 +25,6 @@ function createMarkup(images) {
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
-};
+  };
 
 export { createMarkup }
