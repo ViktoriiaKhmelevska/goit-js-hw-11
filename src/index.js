@@ -3,9 +3,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { createMarkup } from './createmarkup';
+import { scroll } from './scroll';
 
 let inputValue = "";
-let page = 5;
+let page = 1;
 const per_page = 40;
 let totalPages = 0;
 
@@ -17,18 +18,19 @@ const guard = document.querySelector(".js-guard");
 
 const options = {
   root: null,
-  rootMargin: "200px",
+  rootMargin: "100px",
   threshold: 0,
 };
 const observer = new IntersectionObserver(onPaginationScroll, options);
 
 // paginationBtn.hidden = true;
-
 // paginationBtn.addEventListener('click', onPagination);
+
 form.addEventListener('submit', onSubmit);
 
 async function onSubmit(e) {
   e.preventDefault();
+      gallery.innerHTML = "";
   // paginationBtn.hidden = true;
   page = 1;
   const { searchQuery } = e.target.elements;
@@ -42,8 +44,7 @@ async function onSubmit(e) {
     return;
   }
   await addGallery();
-
-  page += 1;
+    observer.observe(guard);
   return inputValue;
 };
 
@@ -58,12 +59,11 @@ async function onSubmit(e) {
 //   }
   
 async function addGallery() {
-  gallery.innerHTML = "";
   try {
+    scroll();
   const response = await getImages(inputValue, page);
     const images = response.data.hits;
     createMarkup(images);
-    observer.observe(guard);
     lightbox.refresh();
     } catch (error) {
     console.log(error);
@@ -98,13 +98,10 @@ const params = new URLSearchParams({
 };
 
 function onPaginationScroll (entries, observer) {
-  console.log(entries);
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       page += 1;
       addGallery();
-      // getImages(page);
-      // createMarkup(images);
       if (page === totalPages) {
         observer.unobserve(guard);
       }

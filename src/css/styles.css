@@ -33,18 +33,17 @@ div {
   max-height: max-content;
   padding-left: 8px;
   padding-right: 8px;
-  margin-top: 10px;
+padding-top: 30px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .form-container {
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   width: 100%;
   background-color: cornflowerblue;
   text-align: center;
-  margin-top: -50px;
   padding: 0;
 }
 
@@ -54,7 +53,6 @@ div {
   max-width: 250px;
   height: 50px;
   display: flex;
-  /* gap: 5px; */
   justify-content: center;
   text-align: center;
   align-items: center;
@@ -120,7 +118,6 @@ background-size: 100% 100%;
   flex-wrap: wrap;
   justify-content: center;
   padding: 20px;
-  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   gap: 10px;
@@ -174,7 +171,6 @@ background-size: 100% 100%;
   width: 80px;
   height: 30px;
   border-radius: 5px;
-  /* padding: 5px; */
   border: 1px inset #060000;
   font-size: 13px;
   background-color: cornflowerblue;
