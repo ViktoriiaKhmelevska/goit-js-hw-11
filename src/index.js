@@ -25,12 +25,12 @@ const observer = new IntersectionObserver(onPaginationScroll, options);
 // paginationBtn.addEventListener('click', onPagination);
 
 form.addEventListener('submit', onSubmit);
-form.addEventListener('change', onInput);
+// form.addEventListener('change', onInput);
 
-function onInput(e) {
-  inputValue = e.target.value.trim();
-  return inputValue;
-};
+// function onInput(e) {
+//   inputValue = e.target.value.trim();
+//   return inputValue;
+// };
 
 function onSubmit(e) {
   e.preventDefault();
@@ -38,11 +38,14 @@ function onSubmit(e) {
   // paginationBtn.hidden = true;
   page = 1;
   const { searchQuery } = e.target.elements;
+  inputValue = searchQuery.value.trim();
     if (!searchQuery.value) {
     Notify.failure('Please, enter a search query');
   } else {
    addImageSubmit()
   }
+    // inputValue = e.target.value.trim();
+  return inputValue;
  };
 
 function addImage(response) {
@@ -81,13 +84,15 @@ async function addGallery() {
  }
 };
 
-function onPaginationScroll (entries, observer) {
+function onPaginationScroll(entries, observer) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      page += 1;
-      addGallery();
-      if (page === totalPages) {
+      if (page >= totalPages) {
         observer.unobserve(guard);
+        return;
+      } else {
+        page += 1;
+        addGallery();
       }
     }
   });
